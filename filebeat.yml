@@ -1,0 +1,12 @@
+filebeat.inputs:
+- type: log
+  paths:
+    - /var/${SERVICE_NAME}/*.log
+  fields:
+    log_type: ${SERVICE_NAME}
+
+output.logstash:
+  hosts: ${LOGSTASH_IP}
+
+setup.kibana:
+  host: ${KIBANA_IP}

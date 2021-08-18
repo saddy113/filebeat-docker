@@ -1,0 +1,13 @@
+version: '3.2'
+
+services: 
+    filebeat:
+        image: docker.elastic.co/beats/filebeat:7.14.0
+        container_name: ${SERVICE_NAME}-filebeat
+        volumes:
+            - ./filebeat.yml:/usr/share/filebeat/filebeat.yml:ro
+            - ${PATH_LOG}:/var/${SERVICE_NAME}
+        environment: 
+            LOGSTASH_IP: ${LOGSTASH_IP}
+            KIBANA_IP: ${KIBANA_IP}
+            SERVICE_NAME: ${SERVICE_NAME}
